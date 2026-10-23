@@ -11,7 +11,8 @@ Cette API publique en lecture seule permet de récupérer des données géograph
 - [Générateur interactif de requêtes](https://www.pyrenees-refuges.com/api-builder.php)
 - [Description OpenAPI](https://www.pyrenees-refuges.com/openapi.json)
 - [Conditions de réutilisation des données](https://www.pyrenees-refuges.com/api/licence/)
-
+- [Exemples PHP, JavaScript et Python](docs/exemples.md)
+- 
 ## Première requête
 
 Obtenir dix lieux au format GeoJSON :
