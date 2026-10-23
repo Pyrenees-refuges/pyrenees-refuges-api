@@ -1,0 +1,125 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Pyrénées Refuges API",
+    "version": "1.0.0",
+    "description": "API publique de lecture seule. Licence CC BY-NC 4.0 pour les données dont Pyrénées Refuges détient les droits ; exclusions et conditions : https://www.pyrenees-refuges.com/api/licence/",
+    "license": {
+      "name": "CC BY-NC 4.0 (covered data only)",
+      "url": "https://creativecommons.org/licenses/by-nc/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.pyrenees-refuges.com"
+    }
+  ],
+  "paths": {
+    "/api.php": {
+      "get": {
+        "summary": "Exporter les refuges et cabanes",
+        "operationId": "exportRefuges",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "Format de sortie",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "description": "Emprise géographique en longitude/latitude WGS84",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type_lieu",
+            "in": "query",
+            "required": false,
+            "description": "Catégorie de lieu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "required": false,
+            "description": "Filtrage sur la région enregistrée",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Nombre maximal de résultats",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Décalage de pagination",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Export réussi. Le type MIME dépend du format.",
+            "content": {
+              "application/geo+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/gpx+xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/vnd.google-earth.kml+xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Paramètres invalides"
+          },
+          "405": {
+            "description": "Méthode non autorisée"
+          },
+          "500": {
+            "description": "Erreur interne"
+          }
+        }
+      }
+    }
+  }
+}
